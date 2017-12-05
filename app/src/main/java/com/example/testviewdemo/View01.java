@@ -59,6 +59,7 @@ public class View01 extends View {
         mPath.rLineTo(-100, 150);
         mPath.close();
         mPaintPath = new Paint(mPaintArc);
+        mPaintPath.setStyle(Paint.Style.FILL);
         mPaintPath.setStrokeWidth(5);
 
     }
