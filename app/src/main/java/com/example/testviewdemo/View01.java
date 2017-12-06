@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -18,7 +19,11 @@ public class View01 extends View {
     private Paint mPaintPoint;
     private Paint mPaintArc;
     private Paint mPaintPath;
+    private Paint mPaintArc2;
+    private Paint mPaintText;
     private Path mPath;
+    private Path mPathArc;
+    private RectF mRectFArc;
     private float[] mPoints = {0, 0, 50, 50, 50, 100, 100, 50, 100, 100, 150, 50, 150, 100};
 
     public View01(Context context) {
@@ -62,6 +67,16 @@ public class View01 extends View {
         mPaintPath.setStyle(Paint.Style.FILL);
         mPaintPath.setStrokeWidth(5);
 
+        mPathArc = new Path();
+        mPathArc.moveTo(180, 700);
+        mPathArc.rLineTo(120, 0);
+        mPathArc.rLineTo(10, 37);
+        mPaintArc2 = new Paint(mPaintPath);
+        mPaintArc2.setStyle(Paint.Style.STROKE);
+        mPaintArc2.setStrokeWidth(3);
+        mPaintArc2.setTextSize(30);
+
+        mRectFArc = new RectF(200, 700, 700, 1200);
     }
 
     @Override
@@ -74,5 +89,9 @@ public class View01 extends View {
         canvas.drawArc(120, 120, 500, 500, 120, 300,
                 false, mPaintArc);
         canvas.drawPath(mPath, mPaintPath);
+
+        canvas.drawArc(mRectFArc, 180,135, true, mPaintCircle);
+        canvas.drawPath(mPathArc, mPaintArc2);
+        canvas.drawText("mmp", 70, 700, mPaintArc2);
     }
 }
